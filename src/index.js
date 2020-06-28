@@ -1,5 +1,7 @@
 import Phaser from "phaser";
-import {Boot} from "./scenes/boot.js"
+import {Boot} from "./scenes/boot"
+import {Menu} from "./scenes/menu"
+import {Preload} from "./scenes/Preload"
 
 
 // 使用 Web Audio API
@@ -14,8 +16,9 @@ try {
 const config = {
   type: Phaser.AUTO,
   parent: "minorminer-game",
-  width: 640,
-  height: 480,
+  width: 1334,
+  height: 750,
+  backgroundColor:'#02171f',
   //静态物体属性
   physics: {
     //设置街机物理模式
@@ -25,7 +28,7 @@ const config = {
       debug: true,
     }},
     //加载游戏场景
-    scene:[Boot],
+    scene:[Boot,Preload,Menu],
      //游戏画面显示比例设置
   scale: {
     mode: Phaser.Scale.FIT, //自动缩放游戏画面
