@@ -12,19 +12,20 @@ var Preload = new Phaser.Class({
         },
 
     preload: function () {
-        console.dir(this)
+         console.dir(this)
         //获取场景的宽高
-        const width = this.scale.width
-        const height = this.scale.height
+        const swidth = this.scale.width
+       const sheight = this.scale.height
+      
         //显示“载入游戏”文字，并且用 setOrigin将原点设置为0.5，以使其在垂直和水平方向上居中
-        var loadingText = this.add.bitmapText(width * 0.5, height * 0.5 - 32, "myfont", "载入游戏", 18).setOrigin(0.5)
+        var loadingText = this.add.bitmapText(swidth * 0.5, sheight * 0.5 - 32, "myfont", "载入游戏", 18).setOrigin(0.5)
         //添加进度条图片
-        var preloadBar = this.add.sprite(width * 0.5, height * 0.5, 'load-bar').setOrigin(0.5);
+        var preloadBar = this.add.sprite(swidth * 0.5, sheight * 0.5, 'load-bar').setOrigin(0.5);
       
         //创建进度百分比数值的文本
         var percentNum = this.make.text({
-            x: width / 2,
-            y: height / 2,
+            x: swidth / 2,
+            y: sheight / 2,
             text: '0%',
             style: {
                 font: '18px monospace',
@@ -33,6 +34,7 @@ var Preload = new Phaser.Class({
         });
         percentNum.setOrigin(0.5, 0.5);
         //开始游戏加载资源的进度条和数值的显示
+        /**@progress 是引擎Phaser.Loader. Events的加载资源事件的事件名 */
         this.load.on('progress', function (value) {
             //进度条上面百分比数值的增加
             percentNum.setText(parseInt(value * 100) + '%');
