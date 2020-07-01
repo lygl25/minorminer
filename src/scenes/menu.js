@@ -18,12 +18,24 @@ var Menu = new Phaser.Class({
         const swidth = this.scale.width
         const sheight = this.scale.height
         console.log('%c Menu ', 'background: green; color: white; display: block;');
+        //创建背景
+        console.dir("menu")
+        var menu = this.make.tilemap({ key: 'menu' });
+         //加入瓦片地图的背景图片 lavaTiles 是图块集名字，tiles 是对应的图片
+        var tiles = menu.addTilesetImage("lavaTiles", "tiles");
+        //"lavaLayer" 是tiled文件里面 图层的名字,并把背景充满整个场景大小
+         menu.createStaticLayer("lavaLayer",tiles) .setDisplaySize(swidth, sheight)
+        
+         this.add.sprite(swidth * 0.5, sheight * 0.5+56, "player",5); //创建一个精灵
+      
+     
+        
         // 游戏标题
-        this.titleText = this.add.bitmapText(swidth * 0.5, sheight * 0.5, "myfont", "小  矿  工", 96).setOrigin(0.5)
+        this.titleText = this.add.bitmapText(swidth * 0.5, sheight * 0.5, "myfont", "小  矿  工", 64).setOrigin(0.5)
         // 游戏提示
-        this.startText = this.add.bitmapText(swidth * 0.5, sheight * 0.5 + 100, "myfont", "请按‘X’开始", 32).setOrigin(0.5)
+        this.startText = this.add.bitmapText(swidth * 0.5, sheight * 0.5 + 100, "myfont", "请按‘X’开始", 24).setOrigin(0.5)
         // 底部网址
-        this.add.bitmapText(swidth * 0.5, sheight - 22, 'myfont', 'A game by jikeyt.com', 24).setOrigin(0.5)
+        this.add.bitmapText(swidth * 0.5, sheight - 12, 'myfont', 'A game by jikeyt.com', 12).setOrigin(0.5)
 
     },
 
@@ -40,8 +52,8 @@ var Menu = new Phaser.Class({
             if (parseInt(this.time.now) % 2) {
                 //数值越小抖动的幅度越大
 
-                randX *= -3;
-                randY *= -3;
+                randX *= -1;
+                randY *= -1;
             }
 
             x = x || this.scale.width / 2;

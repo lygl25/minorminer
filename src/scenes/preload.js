@@ -1,5 +1,5 @@
 import tiles from '../assets/img/tiles.png'
-import outsideTiles from '../assets/img/outside-tiles.png'
+import player from "../assets//img/player.png"
 
 
 var Preload = new Phaser.Class({
@@ -49,17 +49,17 @@ var Preload = new Phaser.Class({
             preloadBar.destroy();
         });
 
+        
+        this.load.tilemapTiledJSON({
+            key: 'menu',
+            url: 'static/tilemaps/menu.json'
+        });
+      
+        //地图瓦片资源
+        this.load.image('tiles',tiles);
 
-        // load tiles/sprites/images
-        this.load.image('tiles', tiles);
-        this.load.image('outside-tiles', outsideTiles);
-
-
-
-        // load audio assets
-        this.load.audio('intro', 'static/audio/intro.mp3');
-        this.load.audio('start_game', 'static/audio/start_game.wav');
-
+         //加载角色图片
+         this.load.spritesheet('player', player, { frameWidth: 16, frameHeight: 16 });
 
 
     },

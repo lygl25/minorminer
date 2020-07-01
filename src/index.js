@@ -18,8 +18,8 @@ try {
 const config = {
   type: Phaser.AUTO,
   parent: "minorminer-game",
-  width: 1334,
-  height: 750,
+  width: 640, //1334
+  height: 480, //750
   backgroundColor:'#02171f',
   //静态物体属性
   physics: {
