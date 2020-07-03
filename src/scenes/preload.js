@@ -1,5 +1,6 @@
 import tiles from '../assets/img/tiles.png'
 import player from "../assets//img/player.png"
+import particle from "../assets//img/particle.png"
 
 
 var Preload = new Phaser.Class({
@@ -60,6 +61,8 @@ var Preload = new Phaser.Class({
 
          //加载角色图片
          this.load.spritesheet('player', player, { frameWidth: 16, frameHeight: 16 });
+         //熔岩的例子图片
+         this.load.image('particle',particle)
 
 
     },
