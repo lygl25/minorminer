@@ -47,7 +47,7 @@ var Menu = new Phaser.Class({
             y: 0, // y位置
             lifespan:5000,//粒子寿命，单位毫秒
             frequency:20,//发射频率，单位毫秒，设置1000显示效果是 1秒钟发射一个粒子
-            maxParticles:200,//发射粒子总数， 发射完就停止执行了
+          //  maxParticles:0,//发射粒子总次数， 发射完如果再用start执行 也发射不出粒子
             scale:{min:0.3,max: 1.5},
             //speedY:[-280,-150],//Y方向的最小和最大速度
             //speedX:[-50,150],
@@ -75,10 +75,14 @@ var Menu = new Phaser.Class({
         this.shakeText(this.startText, null, this.scale.height / 2 + 100);
       
         if(Math.random()>0.97 && !this.lavaSplash.on){
-              
-            this.lavaSplash.setPosition( Math.floor(Math.random() * this.scale.width),this.scale.height-28)
-                this.lavaSplash.start()
-               console.log(this.lavaSplash.on);
+           
+            var x=Math.floor(Math.random() * this.scale.width)
+            var y=this.scale.height-28
+            this.lavaSplash.setPosition( x,y)
+           
+            this.lavaSplash.start()
+            console.log("执行熔岩喷溅,frequency="+this.lavaSplash.frequency+'x='+x+'y='+y+"最大数量"+ this.lavaSplash);
+            console.dir( this.lavaSplash);
                
         }
 
@@ -106,6 +110,7 @@ var Menu = new Phaser.Class({
     onEvent:function(){
        // 延时试行事件，关闭熔岩喷射
         this.lavaSplash.on=false
+        console.log("延时执行"+ this.lavaSplash.on);
     }
 
 })
