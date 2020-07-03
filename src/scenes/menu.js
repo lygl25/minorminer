@@ -40,6 +40,24 @@ var Menu = new Phaser.Class({
         //把图片添加为粒子，熔岩的粒子，可以用于背景热效果和熔岩飞溅
         var particles = this.add.particles('particle');
         
+        //熔岩挥发的背景
+        particles.createEmitter({
+            x: { min: 0, max:swidth },//X 位置
+            y: sheight-28, // y位置
+            lifespan:2200,//粒子寿命，单位毫秒
+            frequency:5,//发射频率，单位毫秒，设置1000显示效果是 1秒钟发射一个粒子
+          //  maxParticles:0,//发射粒子总次数， 发射完如果再用start执行 也发射不出粒子
+            scale:{min:0.3,max: 1.2},//粒子大小
+            speedY:[-500,-325],//Y方向的最小和最大速度
+            //speedX:[-50,150],
+            rotate:{ min: 0, max: 0 },
+            gravityY: 0,
+           // speed: { min: 150, max: 280 },//粒子发射的速度，与重力相结合
+            alpha:0.2,//透明度
+        });
+
+        
+        
         //熔岩随机喷溅效果
         //5000是粒子寿命，20是发射频率，也就是没20毫秒发射一个粒子，每个粒子5秒后消失
         this.lavaSplash=particles.createEmitter({
@@ -48,10 +66,7 @@ var Menu = new Phaser.Class({
             lifespan:5000,//粒子寿命，单位毫秒
             frequency:20,//发射频率，单位毫秒，设置1000显示效果是 1秒钟发射一个粒子
           //  maxParticles:0,//发射粒子总次数， 发射完如果再用start执行 也发射不出粒子
-            scale:{min:0.3,max: 1.5},
-            //speedY:[-280,-150],//Y方向的最小和最大速度
-            //speedX:[-50,150],
-          // angle: { min: 140, max: 180 },
+            scale:{min:0.3,max:1.5},
             rotate:{ min: 0, max: 0 },
             gravityY: 500,
             speed: { min: 150, max: 280 },//粒子发射的速度，与重力相结合
@@ -79,10 +94,8 @@ var Menu = new Phaser.Class({
             var x=Math.floor(Math.random() * this.scale.width)
             var y=this.scale.height-28
             this.lavaSplash.setPosition( x,y)
-           
             this.lavaSplash.start()
-            console.log("执行熔岩喷溅,frequency="+this.lavaSplash.frequency+'x='+x+'y='+y+"最大数量"+ this.lavaSplash);
-            console.dir( this.lavaSplash);
+           
                
         }
 
