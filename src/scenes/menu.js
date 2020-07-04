@@ -18,6 +18,15 @@ var Menu = new Phaser.Class({
         const swidth = this.scale.width
         const sheight = this.scale.height
         console.log('%c Menu ', 'background: green; color: white; display: block;');
+        
+        //播放背景音乐
+        var music= this.sound.add('intro')
+        console.dir(music)
+        music.play({
+           loop:true,//循环播放
+           volume:0.5//声音大小
+        })
+        
         //创建背景
         console.dir("menu")
         var menu = this.make.tilemap({ key: 'menu' });
