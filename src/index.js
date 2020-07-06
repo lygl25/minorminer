@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import {Boot} from "./scenes/boot"
 import {Menu} from "./scenes/menu"
 import {Preload} from "./scenes/Preload"
+import {Play} from "./scenes/play"
 
 
 
@@ -30,7 +31,7 @@ const config = {
       debug: true,
     }},
     //加载游戏场景
-    scene:[Boot,Preload,Menu],
+    scene:[Boot,Preload,Menu,Play],
      //游戏画面显示比例设置
   scale: {
     mode: Phaser.Scale.FIT, //自动缩放游戏画面

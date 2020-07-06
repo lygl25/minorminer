@@ -89,12 +89,16 @@ var Menu = new Phaser.Class({
         
         //粒子透明度
         //this.emitter.setAlpha(0.2)
-        
+        this.keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);//按X键开始游戏
 
     },
 
     update: function () {
 
+        if(this.keyX.isDown){
+            this.scene.start("play");
+        }
+        
         this.shakeText(this.titleText);
         this.shakeText(this.startText, null, this.scale.height / 2 + 100);
       
@@ -132,7 +136,7 @@ var Menu = new Phaser.Class({
     onEvent:function(){
        // 延时试行事件，关闭熔岩喷射
         this.lavaSplash.on=false
-        console.log("延时执行"+ this.lavaSplash.on);
+  
     }
 
 })
