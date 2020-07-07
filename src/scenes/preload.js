@@ -64,8 +64,9 @@ var Preload = new Phaser.Class({
          //熔岩的例子图片
          this.load.image('particle',particle)
 
-        //加载开始菜单的背景音乐
-         this.load.audio('intro', 'static/audio/intro.mp3');
+        //加载声音资源
+         this.load.audio('intro', 'static/audio/intro.mp3');  //加载开始菜单的背景音乐
+         this.load.audio('start_game', 'static/audio/start_game.wav');  //加载开始菜单的背景音乐
 
 
 

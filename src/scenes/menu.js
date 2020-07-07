@@ -20,9 +20,8 @@ var Menu = new Phaser.Class({
         console.log('%c Menu ', 'background: green; color: white; display: block;');
         
         //播放背景音乐
-        var music= this.sound.add('intro')
-        console.dir(music)
-        music.play({
+        this.music= this.sound.add('intro')
+        this.music.play({
            loop:true,//循环播放
            volume:0.5//声音大小
         })
@@ -90,13 +89,43 @@ var Menu = new Phaser.Class({
         //粒子透明度
         //this.emitter.setAlpha(0.2)
         this.keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);//按X键开始游戏
+      //  this.keyX.once('down',this.keyXEvent) 
 
     },
 
     update: function () {
 
         if(this.keyX.isDown){
-            this.scene.start("play");
+           //避免重复按键 starting是一个undifand
+            if (this.starting) {
+                return;
+              }
+             
+              this.starting = true;
+            
+            this.music.stop()//停止音乐
+
+            var startSound = this.sound.add('start_game')// 加入开始游戏音乐
+            startSound.play({
+                loop:false,//循环播放
+                volume:0.6//声音大小
+             })
+           
+            //菜单文本淡入和淡出1.5秒
+            var tween = this.tweens.add({
+                targets: this.startText,
+                alpha: {
+                    from: 0,
+                    to: 1
+                },
+                delay: 50,
+                duration: 100,
+                loop:3
+            });
+           //1.5秒后，过渡到下一个状态
+            this.time.addEvent({ delay: 700, callback: this.startEvent, callbackScope: this, loop: false });
+
+         
         }
         
         this.shakeText(this.titleText);
@@ -137,8 +166,17 @@ var Menu = new Phaser.Class({
        // 延时试行事件，关闭熔岩喷射
         this.lavaSplash.on=false
   
-    }
+    },
 
+    startEvent:function(){
+        //播放完开始文字渐变后再进入游戏场景
+        this.cameras.main.fade(250,0,0,0); 
+        
+        
+     //   this.scene.start("play");//进入游戏场景
+    },
+
+  
 })
 
 
