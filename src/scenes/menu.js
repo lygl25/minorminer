@@ -173,7 +173,7 @@ var Menu = new Phaser.Class({
         this.cameras.main.fade(250,0,0,0); 
         
         
-     //   this.scene.start("play");//进入游戏场景
+       this.scene.start("play");//进入游戏场景
     },
 
   
